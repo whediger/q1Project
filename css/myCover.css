@@ -23,12 +23,13 @@ h2 {
 
 .myButton a {
   opacity: 1;
-  box-shadow: -1px -1px 5px #888888;
+  box-shadow: -1px -1px 5px #738296;
   text-decoration: none;
 }
 /*-------------- +==}========>
+Other Glyph is in folder for restaurants
 change name of glyphs*/
-.glyphs {
+.foodCatagory {
   height: 100px;
   width: 100px;
   background-color: #1E63C2;
@@ -38,4 +39,18 @@ change name of glyphs*/
   background-position: center;
   border-radius: 20px;
   border: solid 3px #070F19;
+  box-shadow: -1px -1px 5px #738296;
+}
+
+.restaurantCat {
+  height: 100px;
+  width: 100px;
+  background-color: #1E63C2;
+  background-image: url("../pics/plateServe.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 20px;
+  border: solid 3px #070F19;
+  box-shadow: -1px -1px 5px #738296;
 }
