@@ -10,6 +10,12 @@ h1, h3, h4, h5, h6 {
 h2 {
   font-family: 'Fredericka the Great';
 }
+/*----------- +==}=======> make the pic change by separating css files for each page*/
+.site-wrapper-inner {
+  background-image: url('../pics/cheeseyFood.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .myButton {
   margin-top: 40px;
@@ -20,7 +26,8 @@ h2 {
   box-shadow: -1px -1px 5px #888888;
   text-decoration: none;
 }
-/*-------------- +==}========>*/
+/*-------------- +==}========>
+change name of glyphs*/
 .glyphs {
   height: 100px;
   width: 100px;
