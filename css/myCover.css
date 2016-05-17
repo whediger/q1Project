@@ -33,7 +33,11 @@ h2 {
 /*-------------- +==}========>
 Other Glyph is in folder for restaurants
 change name of glyphs*/
-
+.button-row {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .foodCatagory {
   height: 100px;
   width: 100px;
