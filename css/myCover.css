@@ -8,6 +8,10 @@ h1, h3, h4, h5, h6 {
 }
 
 h2 {
+  color: #AA7F39;
+  font-size: 1.75em;
+}
+h2 {
   font-family: 'Fredericka the Great';
 }
 /*----------- +==}=======> make the pic change by separating css files for each page*/
@@ -29,6 +33,7 @@ h2 {
 /*-------------- +==}========>
 Other Glyph is in folder for restaurants
 change name of glyphs*/
+.'inner cover'
 .foodCatagory {
   height: 100px;
   width: 100px;
