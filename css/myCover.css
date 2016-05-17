@@ -20,3 +20,15 @@ h2 {
   box-shadow: -1px -1px 5px #888888;
   text-decoration: none;
 }
+/*-------------- +==}========>*/
+.glyphs {
+  height: 100px;
+  width: 100px;
+  background-color: #1E63C2;
+  background-image: url("../pics/Grocery.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 20px;
+  border: solid 3px #070F19;
+}
