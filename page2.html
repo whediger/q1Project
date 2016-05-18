@@ -57,20 +57,24 @@
               </nav> -->
             </div>
           </div>
-
+<div class="fgroup">
           <div class="inner cover">
-            <div class="row">
-              <h1 class="cover-heading">Choose a Category</h1>
+            <div class="title-row">
+              <h3>Choose a catagory and enter food name to search</h3>
             </div>
-            <div class="button-row">
-              <div class="foodCatagory"></div>
-              <div class="restaurantCat"></div>
+
+              <div class="select-fgroup-row">
+                  <select id="selectCatagory" name="foodSearch">
+                    <option value="none" disabled>choose a catagory</option>
+                  </select>
+              </div>
+              <div class="name-row">
+                  <input type="text" name="foodSearch" id="foodNameIn"
+                  placeholder="Food Name">
+                  <input id="submit" type="submit" name="name" value="search">
+              </div>
             </div>
-            <div class="row">
-              <p class="lead">Food Items</p>
-              <p class="lead">Restaurants</p>
-            </div>
-          </div>
+  </div>
 
           <div class="mastfoot">
             <div class="inner">
@@ -93,6 +97,6 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="../js/page2.js"></script>
+    <script src="../js/api.js"></script>
   </body>
 </html>

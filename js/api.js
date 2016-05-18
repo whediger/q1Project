@@ -16,8 +16,8 @@ var itemKey = "";
   }).then(function(data){
     $('#selectCatagory').on('change', function(){
       console.log($('#selectCatagory').val());
-      $('main').append('<p></p>');
-      $('main p:last-child').text($('#selectCatagory').val());
+      // $('main').append('<p></p>');
+      // $('main p:last-child').text($('#selectCatagory').val());
     });
 
     $('#submit').on('click', function(event){

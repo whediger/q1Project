@@ -9,7 +9,7 @@ h1, h3, h4, h5, h6 {
 
 h2 {
   color: #AA7F39;
-  font-size: 1.75em;
+  font-size: 2em;
 }
 h2 {
   font-family: 'Fredericka the Great';
@@ -26,17 +26,40 @@ h2 {
 }
 
 .myButton a {
-  opacity: 1;
+  color: #070F19;
   box-shadow: -1px -1px 5px #738296;
   text-decoration: none;
 }
-/*-------------- +==}========>
-Other Glyph is in folder for restaurants
-change name of glyphs*/
-.button-row {
-  display:flex;
-  flex-direction: row;
-  justify-content: space-around;
+
+#submit {
+  background-color: #1E63C2;
+  color: #070F19;
+  box-shadow: -1px -1px 5px #738296;
+  border-radius: .5em;
+  border-color: #070F19;
+}
+
+.myButton:hover a {
+  box-shadow: -1px -1px 10px #738296;
+}
+
+.title-row h3 {
+  margin-top: 1em;
+}
+.fgroup {
+  padding:2%;
+}
+.select-fgroup-row, .name-row {
+
+}
+.fgroup div{
+  margin: 1em;
+}
+
+.brandDiv {
+  height: 40px;
+  width: 100px;
+  background-color:
 }
 .foodCatagory {
   height: 100px;
@@ -50,6 +73,10 @@ change name of glyphs*/
   border: solid 3px #070F19;
   box-shadow: -1px -1px 5px #738296;
 }
+.foodCatagory:hover{
+  cursor: pointer;
+  box-shadow: -1px -1px 10px #738296;
+}
 
 .restaurantCat {
   height: 100px;
@@ -62,4 +89,8 @@ change name of glyphs*/
   border-radius: 20px;
   border: solid 3px #070F19;
   box-shadow: -1px -1px 5px #738296;
+}
+.restaurantCat:hover{
+  cursor: pointer;
+  box-shadow: -1px -1px 10px #738296;
 }
