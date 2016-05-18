@@ -29,10 +29,8 @@ $(document).ready(function(){
         for ( i = 0; i < foodlength; i++){
           foods[i] = data.list.item[i].name;
         }
-        //--+==}=======> implimet typeahead
-        //--+==}=======> implimet typeahead
         //console.log(foods);
-        //typeahead
+        //typeahead +==}=======> typeahead
         var substringMatcher = function(strs) {
             return function findMatches(q, cb) {
               var matches, substringRegex;
@@ -67,9 +65,6 @@ $(document).ready(function(){
           });
         //console.log(data.list.item[200]);
       });
-      //--+==}=======> implimet typeahead next
-      //--+==}=======> implimet typeahead next
-      //--+==}=======> implimet typeahead next
     });
 
     // $('.typeahead').on('focus', function(){
@@ -77,7 +72,7 @@ $(document).ready(function(){
     // });
     return catagory;
   }).then(function(catagory){
-    //get list of all foods in catagory
+    
 
 
     });

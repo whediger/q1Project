@@ -106,7 +106,10 @@ body {
     text-shadow: 2px 2px 7px #271B08;
     float: left;
   }
-  
+
+  .typeahead{
+    min-width: 200px;
+  }
   .masthead-nav {
     float: right;
   }

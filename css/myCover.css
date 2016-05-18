@@ -71,8 +71,10 @@ h2 {
   cursor: pointer;
 }
 
+.typeahead {
+  min-width: 575px;
+}
 .tt-cursor {
-  
   background-color: #271B08;
   color: #E4CEAA;
 }
@@ -80,37 +82,4 @@ h2 {
   height: 40px;
   width: 100px;
   background-color:
-}
-.foodCatagory {
-  height: 100px;
-  width: 100px;
-  background-color: #1E63C2;
-  background-image: url("../pics/Grocery.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 20px;
-  border: solid 3px #070F19;
-  box-shadow: -1px -1px 5px #738296;
-}
-.foodCatagory:hover{
-  cursor: pointer;
-  box-shadow: -1px -1px 10px #738296;
-}
-
-.restaurantCat {
-  height: 100px;
-  width: 100px;
-  background-color: #1E63C2;
-  background-image: url("../pics/plateServe.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 20px;
-  border: solid 3px #070F19;
-  box-shadow: -1px -1px 5px #738296;
-}
-.restaurantCat:hover{
-  cursor: pointer;
-  box-shadow: -1px -1px 10px #738296;
 }
