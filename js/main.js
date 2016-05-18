@@ -22,7 +22,7 @@ var itemKey = "";
 
     $('#submit').on('click', function(event){
       event.preventDefault();
-    });//do I really need a whole function for this?
+    });
 
   });
   // need to get the item id number and then pass it back over to get nutritional information. Two seperate requests.

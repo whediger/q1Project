@@ -25,8 +25,9 @@ var itemKey = "";
           //console.log(catagory);
         }
       }
-
-
+      return catagory;
+    }).then(funtion(catagory){
+      
     });
 
     $('#submit').on('click', function(event){
