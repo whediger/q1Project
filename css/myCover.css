@@ -58,8 +58,10 @@ h2 {
 
 .tt-dataset{
   min-width: 200px;
-  background-color: white;
-  color: black;
+  border: solid 3px #271B08;
+  border-radius: 20px;
+  background-color: #E4CEAA;
+  color: #271B08;
   padding: 2%;
 }
 .brandDiv {
