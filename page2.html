@@ -63,17 +63,18 @@
               <h3>Choose a catagory and enter food name to search</h3>
             </div>
 
-              <div class="select-fgroup-row">
-                  <select id="selectCatagory" name="foodSearch">
-                    <option value="none" disabled>choose a catagory</option>
-                  </select>
-              </div>
-              <div class="name-row">
-                  <input type="text" name="foodSearch" id="foodNameIn"
-                  placeholder="Food Name">
-                  <input id="submit" type="submit" name="name" value="search">
-              </div>
+            <div class="select-fgroup-row">
+                <select id="selectCatagory" name="foodSearch">
+                  <option value="none" disabled>choose a catagory</option>
+                </select>
             </div>
+            <div class="name-row">
+              <div id="the-basics">
+                <input class="typeahead" type="text" placeholder="Search for Food">
+              </div>
+                <input id="submit" type="submit" name="name" value="search">
+            </div>
+          </div>
   </div>
 
           <div class="mastfoot">

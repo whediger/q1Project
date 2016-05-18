@@ -1,12 +1,10 @@
 $(document).ready(function(){
 
-var itemKey = "";
-
   $.get('http://api.nal.usda.gov/ndb/list?format=json&lt=g&sort=n&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u ', function(data){
     var itemLength = data.list.item.length;
     for ( i = 0; i < itemLength; i++ ) {
-      console.log(data.list.item[i]);
-        console.log(data.list.item[i].name);
+      //console.log(data.list.item[i]);
+        //console.log(data.list.item[i].name);
         $('#selectCatagory').append('<option'
           + ' value="' + data.list.item[i].name
           + '">' + data.list.item[i].name
@@ -25,15 +23,62 @@ var itemKey = "";
           //console.log(catagory);
         }
       }
-      return catagory;
-    }).then(funtion(catagory){
-      
+      $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u ', function(data){
+        foods = [];
+        foodlength = data.list.item.length;
+        for ( i = 0; i < foodlength; i++){
+          foods[i] = data.list.item[i].name;
+        }
+        //--+==}=======> implimet typeahead
+        //--+==}=======> implimet typeahead
+        //console.log(foods);
+        //typeahead
+        var substringMatcher = function(strs) {
+            return function findMatches(q, cb) {
+              var matches, substringRegex;
+
+              // an array that will be populated with substring matches
+              matches = [];
+
+              // regex used to determine if a string contains the substring `q`
+              substrRegex = new RegExp(q, 'i');
+
+              // iterate through the pool of strings and for any string that
+              // contains the substring `q`, add it to the `matches` array
+              $.each(strs, function(i, str) {
+                if (substrRegex.test(str)) {
+                  matches.push(str);
+                }
+              });
+
+              cb(matches);
+            };
+          };
+
+          $('#the-basics .typeahead').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+          },
+          {
+            name: 'foods',
+            source: substringMatcher(foods)
+          });
+        //console.log(data.list.item[200]);
+      });
+      //--+==}=======> implimet typeahead next
+      //--+==}=======> implimet typeahead next
+      //--+==}=======> implimet typeahead next
+    });
+    return catagory;
+  }).then(function(catagory){
+    //get list of all foods in catagory
+
+
     });
 
     $('#submit').on('click', function(event){
       event.preventDefault();
     });//do I really need a whole function for this?
 
-  });
-  // need to get the item id number and then pass it back over to get nutritional information. Two seperate requests.
 });
