@@ -14,10 +14,19 @@ var itemKey = "";
     }
     return data;
   }).then(function(data){
+    //get selected catagory and catagory id
+    //then pass then to the next promise
+    var catagory = ["", ""];
     $('#selectCatagory').on('change', function(){
-      console.log($('#selectCatagory').val());
-      // $('main').append('<p></p>');
-      // $('main p:last-child').text($('#selectCatagory').val());
+      catagory[0] = $('#selectCatagory').val();
+      for ( i = 0; i < data.list.item.length; i++ ) {
+        if (data.list.item[i].name === catagory[0] ){
+          catagory[1] = data.list.item[i].id;
+          //console.log(catagory);
+        }
+      }
+
+
     });
 
     $('#submit').on('click', function(event){
