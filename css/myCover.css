@@ -58,11 +58,17 @@ h2 {
 
 .tt-dataset{
   min-width: 200px;
+  max-height: 300px;
+  overflow: scroll;
   border: solid 3px #271B08;
   border-radius: 20px;
   background-color: #E4CEAA;
   color: #271B08;
   padding: 2%;
+}
+
+.tt-dataset:hover {
+  cursor: pointer;
 }
 .brandDiv {
   height: 40px;

@@ -55,13 +55,14 @@ $(document).ready(function(){
             };
           };
 
-          $('#the-basics .typeahead').typeahead({
+          $('#scrollable-dropdown-menu .typeahead').typeahead({
             hint: true,
             highlight: true,
             minLength: 1
           },
           {
             name: 'foods',
+            limit: 10,
             source: substringMatcher(foods)
           });
         //console.log(data.list.item[200]);
