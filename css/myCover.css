@@ -56,6 +56,12 @@ h2 {
   margin: 1em;
 }
 
+.tt-dataset{
+  min-width: 200px;
+  background-color: white;
+  color: black;
+  padding: 2%;
+}
 .brandDiv {
   height: 40px;
   width: 100px;
