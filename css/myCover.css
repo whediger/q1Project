@@ -70,6 +70,12 @@ h2 {
 .tt-dataset:hover {
   cursor: pointer;
 }
+
+.tt-cursor {
+  
+  background-color: #271B08;
+  color: #E4CEAA;
+}
 .brandDiv {
   height: 40px;
   width: 100px;

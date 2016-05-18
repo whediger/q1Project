@@ -71,6 +71,10 @@ $(document).ready(function(){
       //--+==}=======> implimet typeahead next
       //--+==}=======> implimet typeahead next
     });
+
+    // $('.typeahead').on('focus', function(){
+    //   $('.typeahead').typeahead('destroy');
+    // });
     return catagory;
   }).then(function(catagory){
     //get list of all foods in catagory
