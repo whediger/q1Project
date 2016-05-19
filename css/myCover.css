@@ -6,10 +6,35 @@ p {
 h1, h3, h4, h5, h6 {
   font-family: 'Josefin Slab';
 }
-.nutriResults h1{
-  color: #271B08;
 
+#foodText {
+  color: #271B08;
 }
+
+#myModal h2{
+  color: #271B08;
+}
+.modal-dialog {
+  max-width: 400px;
+  min-width: 335px;
+}
+
+.nutriRow {
+  border-bottom: dotted 1px #7B6F5B;
+}
+.modal-body .nutriRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.modal-body .nutriRow .nutrientTitle{
+  color: #271B08;
+}
+
+.nutriValue {
+  color: #271B08;
+}
+
 h2 {
   color: #AA7F39;
   font-size: 2em;

@@ -45,7 +45,16 @@ $(document).ready(function(){
         function getNutritionalData(ndbnoIn){
           $.get('http://api.nal.usda.gov/ndb/reports/?ndbno='+ ndbnoIn +'&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
             nutrition = data;
-              console.log(data);
+            nutroLength = data.report.food.nutrients.length;
+              //add elements to modal-body
+              for ( i = 1; i < nutroLength; i ++ ) {
+                $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
+                + data.report.food.nutrients[i].name
+                + '</div><div class="nutriValue">'+ data.report.food.nutrients[i].value +' '
+                +data.report.food.nutrients[i].unit + '</div></div>' );
+
+              }
+              // console.log(data.report.food.nutrients[i].name);
               return nutrition
           });
           return nutrition
@@ -69,10 +78,7 @@ $(document).ready(function(){
 
           getNutritionalData(id);
           //open new window for results
-
-
-
-
+          $('#foodTitle').text(nameIn);
         });
 
 
