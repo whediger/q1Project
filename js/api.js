@@ -13,8 +13,14 @@ $(document).ready(function(){
     return data;
   }).then(function(data){
     //get selected catagory and catagory id
-    //then pass then to the next promise
+    //then pass to the next promise
     var catagory = ["", ""];
+
+    $('#selectCatagory').on('click', function(){
+      $('.typeahead').typeahead('destroy');
+
+    });
+
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
       for ( i = 0; i < data.list.item.length; i++ ) {
@@ -23,6 +29,7 @@ $(document).ready(function(){
           //console.log(catagory);
         }
       }
+
       $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u ', function(data){
         foods = [];
         foodlength = data.list.item.length;
@@ -30,7 +37,24 @@ $(document).ready(function(){
           foods[i] = data.list.item[i].name;
         }
         //console.log(foods);
-        //typeahead +==}=======> typeahead
+
+        //get food item id from fooditem name
+        $('#submit').on('click', function(event){
+          event.preventDefault();
+          id = "";
+          nameIn = $('#foodText').val();
+          console.log("nameIn: " + nameIn);
+          for ( i = 0; i < foodlength; i++) {
+
+          }
+
+        });//do I really need a whole function for this?
+
+        // console.log("catagory: " +
+        //               catagory[1] +
+        //             "food id: " +
+        //             );
+        //typeahead +=========> typeahead
         var substringMatcher = function(strs) {
             return function findMatches(q, cb) {
               var matches, substringRegex;
@@ -72,13 +96,11 @@ $(document).ready(function(){
     // });
     return catagory;
   }).then(function(catagory){
-    
+
 
 
     });
 
-    $('#submit').on('click', function(event){
-      event.preventDefault();
-    });//do I really need a whole function for this?
+
 
 });
