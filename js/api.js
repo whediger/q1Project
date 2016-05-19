@@ -30,30 +30,43 @@ $(document).ready(function(){
         }
       }
 
-      $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u ', function(data){
-        foods = [];
+      $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
+        var foods = [];
+        var nutrition = {};
+
         foodlength = data.list.item.length;
         for ( i = 0; i < foodlength; i++){
           foods[i] = data.list.item[i].name;
         }
-        //console.log(foods);
+        // console.log(data);
+
+        //send ndbno to get nutrional data
+        function getNutritionalData(ndbnoIn){
+          $.get('http://api.nal.usda.gov/ndb/reports/?ndbno='+ ndbnoIn +'&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
+            nutrition = data;
+              console.log(data);
+              return nutrition
+          });
+          return nutrition
+        }
 
         //get food item id from fooditem name
         $('#submit').on('click', function(event){
           event.preventDefault();
           id = "";
           nameIn = $('#foodText').val();
-          console.log("nameIn: " + nameIn);
           for ( i = 0; i < foodlength; i++) {
-
+            if ( nameIn === data.list.item[i].name ){
+              id = data.list.item[i].ndbno;
+            }
           }
+          console.log("catagory: " +
+                        catagory[1] +
+                      " food id: " +
+                      id);
+          getNutritionalData(id)
+        });
 
-        });//do I really need a whole function for this?
-
-        // console.log("catagory: " +
-        //               catagory[1] +
-        //             "food id: " +
-        //             );
         //typeahead +=========> typeahead
         var substringMatcher = function(strs) {
             return function findMatches(q, cb) {
@@ -94,9 +107,8 @@ $(document).ready(function(){
     // $('.typeahead').on('focus', function(){
     //   $('.typeahead').typeahead('destroy');
     // });
-    return catagory;
-  }).then(function(catagory){
 
+  }).then(function(nutrition){
 
 
     });
