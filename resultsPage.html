@@ -55,22 +55,24 @@
               </nav> -->
             </div>
           </div>
-<div class="fgroup">
+<div class="nutriResults">
           <div class="inner cover">
             <div class="title-row">
-              <h3>Choose a catagory and enter food name to search</h3>
+              <!-- ----------button to close window-->
+              <div class="myButton">
+                <p class="lead">
+                  <a class="btn btn-lg btn-default">Close Window</a>
+                </p>
+              </div>
+
             </div>
 
             <div class="select-fgroup-row">
-                <select id="selectCatagory" name="foodSearch">
-                  <option value="none" disabled>choose a catagory</option>
-                </select>
+              <h1>Nutrition</h1>
+
             </div>
-            <div class="name-row">
-              <div id="scrollable-dropdown-menu">
-                <input id="foodText" class="typeahead" type="text" placeholder="Search for Food">
-              </div>
-                <input id="submit" type="submit" name="name" value="search">
+            <div class="nutri-row">
+
             </div>
           </div>
   </div>
@@ -92,6 +94,7 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="../js/api.js"></script>
 

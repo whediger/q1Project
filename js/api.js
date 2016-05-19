@@ -54,7 +54,8 @@ $(document).ready(function(){
         //get food item id from fooditem name
         $('#submit').on('click', function(event){
           event.preventDefault();
-          id = "";
+          var id = "";
+
           nameIn = $('#foodText').val();
           for ( i = 0; i < foodlength; i++) {
             if ( nameIn === data.list.item[i].name ){
@@ -65,8 +66,15 @@ $(document).ready(function(){
                         catagory[1] +
                       " food id: " +
                       id);
-          getNutritionalData(id)
+
+          getNutritionalData(id);
+          //open new window for results
+
+
+
+
         });
+
 
         //typeahead +=========> typeahead
         //-----------------------
@@ -117,9 +125,6 @@ $(document).ready(function(){
 
   }).then(function(nutrition){
 
-
     });
-
-
 
 });

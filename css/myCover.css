@@ -6,7 +6,10 @@ p {
 h1, h3, h4, h5, h6 {
   font-family: 'Josefin Slab';
 }
+.nutriResults h1{
+  color: #271B08;
 
+}
 h2 {
   color: #AA7F39;
   font-size: 2em;
@@ -31,16 +34,17 @@ h2 {
   text-decoration: none;
 }
 
+.myButton:hover a {
+  cursor: pointer;
+  box-shadow: -1px -1px 10px #738296;
+}
+
 #submit {
   background-color: #1E63C2;
   color: #070F19;
   box-shadow: -1px -1px 5px #738296;
   border-radius: .5em;
   border-color: #070F19;
-}
-
-.myButton:hover a {
-  box-shadow: -1px -1px 10px #738296;
 }
 
 .title-row h3 {
@@ -54,6 +58,10 @@ h2 {
 }
 .fgroup div{
   margin: 1em;
+}
+
+.nutriResults {
+  background-color: #E4CEAA;
 }
 
 .tt-dataset{
