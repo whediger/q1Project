@@ -69,6 +69,15 @@ $(document).ready(function(){
         });
 
         //typeahead +=========> typeahead
+        //-----------------------
+        //add scroll to selected suggestion on popup
+        // var container = $('tt-dataset'),
+        //     scrollTo = $('tt-cursor');
+        //
+        // container.animate({
+        //     scrollTop: scrollTo.offset().top - container.offset().top + container.scrollTop()
+        // });
+
         var substringMatcher = function(strs) {
             return function findMatches(q, cb) {
               var matches, substringRegex;
@@ -98,16 +107,13 @@ $(document).ready(function(){
           },
           {
             name: 'foods',
-            limit: 10,
+            limit: 30,
             source: substringMatcher(foods)
           });
         //console.log(data.list.item[200]);
       });
     });
 
-    // $('.typeahead').on('focus', function(){
-    //   $('.typeahead').typeahead('destroy');
-    // });
 
   }).then(function(nutrition){
 
