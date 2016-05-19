@@ -13,14 +13,15 @@ $(document).ready(function(){
     return data;
   }).then(function(data){
     //get selected catagory and catagory id
-    //then pass to the next promise
+    //then pass nutritional information to the next promise
     var catagory = ["", ""];
 
+    //reset typahead when user changes selected option
     $('#selectCatagory').on('click', function(){
       $('.typeahead').typeahead('destroy');
 
     });
-
+    //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
       for ( i = 0; i < data.list.item.length; i++ ) {
@@ -29,7 +30,7 @@ $(document).ready(function(){
           //console.log(catagory);
         }
       }
-
+      //get info for a particular food
       $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
         var foods = [];
         var nutrition = {};
