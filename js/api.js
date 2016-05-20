@@ -46,6 +46,7 @@ $(document).ready(function(){
           $.get('http://api.nal.usda.gov/ndb/reports/?ndbno='+ ndbnoIn +'&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
             nutrition = data;
             nutroLength = data.report.food.nutrients.length;
+            console.log(data);
               //add elements to modal-body
               for ( i = 1; i < nutroLength; i ++ ) {
                 $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
