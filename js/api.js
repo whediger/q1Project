@@ -49,11 +49,12 @@ $(document).ready(function(){
             console.log(data);
               //add elements to modal-body
               for ( i = 1; i < nutroLength; i ++ ) {
-                if (data.report.food.nutrients[i].value > 0 ) {
+                if (data.report.food.nutrients[i].value > 0){
                   $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
                   + data.report.food.nutrients[i].name
-                  + '</div><div class="nutriValue">'+ data.report.food.nutrients[i].value +' '
-                  +data.report.food.nutrients[i].unit + '</div></div>' );
+                  + '</div><div class="nutriValue">'
+                  + data.report.food.nutrients[i].value +' '
+                  + data.report.food.nutrients[i].unit + '</div></div>' );
                 }
               }
               // console.log(data.report.food.nutrients[i].name);
@@ -73,10 +74,11 @@ $(document).ready(function(){
               id = data.list.item[i].ndbno;
             }
           }
-          console.log("catagory: " +
-                        catagory[1] +
-                      " food id: " +
-                      id);
+
+          // console.log("catagory: " +
+          //               catagory[1] +
+          //             " food id: " +
+          //             id);
 
           getNutritionalData(id);
           //open new window for results
