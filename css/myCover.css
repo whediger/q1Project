@@ -49,7 +49,7 @@ h2 {
 }
 /*----------- +==}=======> make the pic change by separating css files for each page*/
 .site-wrapper-inner {
-  background-image: url('../pics/vegetables-on-wood.jpg');
+  background-image: url('pics/vegetables-on-wood.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
