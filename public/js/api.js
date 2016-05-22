@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $.get('http://api.nal.usda.gov/ndb/list?format=json&lt=g&sort=n&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u ', function(data){
+  $.get('https://api.nal.usda.gov/ndb/list?format=json&lt=g&sort=n&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u ', function(data){
     var itemLength = data.list.item.length;
     for ( i = 0; i < itemLength; i++ ) {
       //console.log(data.list.item[i]);
