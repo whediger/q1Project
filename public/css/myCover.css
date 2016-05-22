@@ -48,7 +48,7 @@ h2 {
 }
 h2 {
   font-family: 'Fredericka the Great';
-  font-size: 3em
+  font-size: 3em;
 }
 /*----------- +==}=======> make the pic change by separating css files for each page*/
 .site-wrapper-inner {
@@ -81,7 +81,8 @@ h2 {
 }
 
 .title-row h3 {
-  margin-top: 1em;
+  padding-bottom: 30px;
+
 }
 .fgroup {
   padding:2%;
@@ -122,6 +123,12 @@ h2 {
   width: 100px;
 
 }
+
+.inner p {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 @media (min-width: 768px) {
 
 
