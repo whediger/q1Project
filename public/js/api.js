@@ -19,8 +19,8 @@ $(document).ready(function(){
     //reset typahead when user changes selected option
     $('#selectCatagory').on('click', function(){
       $('.typeahead').typeahead('destroy');
-
     });
+
     //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
