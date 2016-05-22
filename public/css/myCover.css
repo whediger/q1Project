@@ -27,11 +27,13 @@ h1, h3, h4, h5, h6 {
 .nutriRow {
   border-bottom: dotted 1px #7B6F5B;
 }
+
 .modal-body .nutriRow {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+
 .modal-body .nutriRow .nutrientTitle{
   color: #271B08;
 }
@@ -83,9 +85,7 @@ h2 {
 .fgroup {
   padding:2%;
 }
-.select-fgroup-row, .name-row {
 
-}
 .fgroup div{
   margin: 1em;
 }
@@ -110,7 +110,7 @@ h2 {
 }
 
 .typeahead {
-  min-width: 575px;
+  min-width: 300px;
 }
 .tt-cursor {
   background-color: #271B08;
@@ -119,5 +119,14 @@ h2 {
 .brandDiv {
   height: 40px;
   width: 100px;
-  background-color:
+
+}
+@media (min-width: 768px) {
+
+
+}
+@media (min-width: 992px) {
+    .typeahead{
+      min-width: 575px;
+    }
 }
