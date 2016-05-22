@@ -48,6 +48,7 @@ h2 {
 }
 h2 {
   font-family: 'Fredericka the Great';
+  font-size: 3em
 }
 /*----------- +==}=======> make the pic change by separating css files for each page*/
 .site-wrapper-inner {
