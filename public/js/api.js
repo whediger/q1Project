@@ -28,6 +28,12 @@ $(document).ready(function(){
         + typeVal);
     });
 
+    // to get Measure data(use to create measure input fields) List
+    // of possible nutrients are on pg 14 of sr28, select to match 
+    // nutrition data on packaging:
+    //  http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=f&format=json&api_key=DEMO_KEY
+
+
     //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
