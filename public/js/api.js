@@ -20,7 +20,11 @@ $(document).ready(function(){
     $('#selectCatagory').on('click', function(){
       $('.typeahead').typeahead('destroy');
     });
-
+    $('.typeahead').on('typeahead:select', function() {
+      var typeVal = $(this).val();
+      console.log("typeahead suggestion selected: "
+        + typeVal);
+    });
     //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
@@ -41,6 +45,10 @@ $(document).ready(function(){
         }
         // console.log(data);
 
+        function getMeasurements(ndbnoIn){
+
+        }
+
         //send ndbno to get nutrional data
         function getNutritionalData(ndbnoIn){
           $.get('http://api.nal.usda.gov/ndb/reports/?ndbno='+ ndbnoIn +'&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
@@ -57,12 +65,10 @@ $(document).ready(function(){
                 }
               }
               // console.log(data.report.food.nutrients[i].name);
-              return nutrition
           });
-          return nutrition
         }
 
-        //get food item id from fooditem name
+        //get food item id from fooditem name in input
         $('#submit').on('click', function(event){
           event.preventDefault();
           var id = "";
@@ -78,6 +84,7 @@ $(document).ready(function(){
                       " food id: " +
                       id);
 
+
           getNutritionalData(id);
           //open new window for results
           $('#foodTitle').text(nameIn);
@@ -86,7 +93,7 @@ $(document).ready(function(){
 
         //typeahead +=========> typeahead
         //-----------------------
-        //add scroll to selected suggestion on popup
+        //add scroll to selected suggestion on popup when user presses arrow keys
         // var container = $('tt-dataset'),
         //     scrollTo = $('tt-cursor');
         //
