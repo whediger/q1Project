@@ -16,15 +16,18 @@ $(document).ready(function(){
     //then pass nutritional information to the next promise
     var catagory = ["", ""];
 
-    //reset typahead when user changes selected option
+    //reset typahead when user changes selected foodgroup
     $('#selectCatagory').on('click', function(){
       $('.typeahead').typeahead('destroy');
     });
+
+    //gets selected food value when user selects suggested input
     $('.typeahead').on('typeahead:select', function() {
       var typeVal = $(this).val();
       console.log("typeahead suggestion selected: "
         + typeVal);
     });
+
     //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
@@ -34,6 +37,7 @@ $(document).ready(function(){
           //console.log(catagory);
         }
       }
+
       //get info for a particular food
       $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
         var foods = [];
@@ -49,7 +53,17 @@ $(document).ready(function(){
 
         }
 
-        //send ndbno to get nutrional data
+        function getNdbno(foodName) {
+          var ndbnoOut = "";
+          for ( i = 0; i < foodlength; i++) {
+            if ( nameIn === data.list.item[i].name ){
+              ndbnoOut = data.list.item[i].ndbno;
+            }
+          }
+          return ndbnoOut;
+        }
+
+        //takes ndbno returns nutrional data
         function getNutritionalData(ndbnoIn){
           $.get('http://api.nal.usda.gov/ndb/reports/?ndbno='+ ndbnoIn +'&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
             nutrition = data;
@@ -74,11 +88,9 @@ $(document).ready(function(){
           var id = "";
 
           nameIn = $('#foodText').val();
-          for ( i = 0; i < foodlength; i++) {
-            if ( nameIn === data.list.item[i].name ){
-              id = data.list.item[i].ndbno;
-            }
-          }
+
+          id = getNdbno(nameIn);
+
           console.log("catagory: " +
                         catagory[1] +
                       " food id: " +
