@@ -33,10 +33,22 @@ $(document).ready(function(){
     // most asked for nutrients and ones included on nutritional facts
     // pannel on the back of packages
     $.get('http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
-      //turn measure into function
-      for ( i = 0; i < data.report.food.nutrients[1].measures.length; i++) {
-        console.log("measure: " + data.report.food.nutrients[1].measures[i].label);
+
+      //takes data and returns array of Measurements used
+      function getMeasurements(dataIn){
+        var measurements = [];
+        //note: add conditional
+        var measureLength = dataIn.report.food.nutrients[1].measures.length;
+        for ( i = 0; i < measureLength; i++){
+          measurements[i] = dataIn.report.food.nutrients[1].measures[i].label;
+        }
+        return measurements;
       }
+
+      //test measure function
+      console.log(getMeasurements(data));
+
+      //turn into nutient function
       for ( i = 0; i < data.report.food.nutrients.length; i++) {
         console.log("nutrient: " + data.report.food.nutrients[i].name);
       }
@@ -63,9 +75,7 @@ $(document).ready(function(){
         }
         // console.log(data);
 
-        function getMeasurements(ndbnoIn){
 
-        }
 
         function getNdbno(foodName) {
           var ndbnoOut = "";
