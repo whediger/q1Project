@@ -28,11 +28,12 @@ $(document).ready(function(){
         // + typeVal);
     });
 
-    // get Measure data(use to create measure input fields) 
+    // get Measure data(use to create measure input fields)
     // same query gets nutrition data "basic" report returns
     // most asked for nutrients and ones included on nutritional facts
     // pannel on the back of packages
     $.get('http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
+      //turn measure into function
       for ( i = 0; i < data.report.food.nutrients[1].measures.length; i++) {
         console.log("measure: " + data.report.food.nutrients[1].measures[i].label);
       }
