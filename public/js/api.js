@@ -34,7 +34,7 @@ $(document).ready(function(){
     // pannel on the back of packages
     $.get('http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
 
-      //takes data and returns array of Measurements used
+      //takes data and returns array of Measurement types
       function getMeasurements(dataIn){
         var measurements = [];
         //note: add conditional
@@ -45,14 +45,48 @@ $(document).ready(function(){
         return measurements;
       }
 
+      //takes data and returns array of objects of nutrient
+      //values and nutrient name
+      //for measurement type.
+      //value is nutrient value for 1 of the nutrient type
+      function getNutrients(dataIn, measureIn){
+        var results = [];
+        var unit = "";
+        var nutriVal = "";
+        var nutriName = "";
+
+        nutrientsLength = data.report.food.nutrients.length;
+
+        for ( i = 0; i < nutrientsLength; i++){
+
+            unit = data.report.food.nutrients[i].unit;
+            nutriName =  data.report.food.nutrients[i].name;
+
+            for ( ii = 0; ii < data.report.food.nutrients[i].measures.length; ii++ ){
+              if (data.report.food.nutrients[i].measures[ii].label === measureIn){
+                  nutriVal =  data.report.food.nutrients[i].measures[ii].value
+              }
+            }
+          results[i] = {
+            name: nutriName,
+            value: nutriVal,
+            unit: unit
+          }
+        }
+        return results;
+      }
+
       //test measure function
-      console.log(getMeasurements(data));
+      //console.log(getMeasurements(data));
 
       //turn into nutient function
-      for ( i = 0; i < data.report.food.nutrients.length; i++) {
-        console.log("nutrient: " + data.report.food.nutrients[i].name);
-      }
-      console.log(data.report.food.nutrients[1]);
+      // for ( i = 0; i < data.report.food.nutrients.length; i++) {
+      //   console.log("nutrient: " + data.report.food.nutrients[i].name);
+      // }
+      // console.log(data.report.food.nutrients[1]);
+
+      //test nutrient function
+      console.log(getNutrients(data, "cup, diced"));
     });
     //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
