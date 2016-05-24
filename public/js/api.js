@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  //get food group catagories.
   $.get('https://api.nal.usda.gov/ndb/list?format=json&lt=g&sort=n&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u ', function(data){
     var itemLength = data.list.item.length;
     for ( i = 0; i < itemLength; i++ ) {
@@ -13,7 +13,7 @@ $(document).ready(function(){
     return data;
   }).then(function(data){
     //get selected catagory and catagory id
-    //then pass nutritional information to the next promise
+
     var catagory = ["", ""];
 
     //reset typahead when user changes selected foodgroup
@@ -24,16 +24,23 @@ $(document).ready(function(){
     //gets selected food value when user selects suggested input
     $('.typeahead').on('typeahead:select', function() {
       var typeVal = $(this).val();
-      console.log("typeahead suggestion selected: "
-        + typeVal);
+      //console.log("typeahead suggestion selected: "
+        // + typeVal);
     });
 
-    // to get Measure data(use to create measure input fields) List
-    // of possible nutrients are on pg 14 of sr28, select to match 
-    // nutrition data on packaging:
-    //  http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=f&format=json&api_key=DEMO_KEY
-
-
+    // get Measure data(use to create measure input fields) 
+    // same query gets nutrition data "basic" report returns
+    // most asked for nutrients and ones included on nutritional facts
+    // pannel on the back of packages
+    $.get('http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
+      for ( i = 0; i < data.report.food.nutrients[1].measures.length; i++) {
+        console.log("measure: " + data.report.food.nutrients[1].measures[i].label);
+      }
+      for ( i = 0; i < data.report.food.nutrients.length; i++) {
+        console.log("nutrient: " + data.report.food.nutrients[i].name);
+      }
+      console.log(data.report.food.nutrients[1]);
+    });
     //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
@@ -74,7 +81,7 @@ $(document).ready(function(){
           $.get('http://api.nal.usda.gov/ndb/reports/?ndbno='+ ndbnoIn +'&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
             nutrition = data;
             nutroLength = data.report.food.nutrients.length;
-            console.log(data);
+            //console.log(data);
               //add elements to modal-body
               for ( i = 1; i < nutroLength; i ++ ) {
                 if (data.report.food.nutrients[i].value > 0 ) {
@@ -97,10 +104,10 @@ $(document).ready(function(){
 
           id = getNdbno(nameIn);
 
-          console.log("catagory: " +
-                        catagory[1] +
-                      " food id: " +
-                      id);
+          // console.log("catagory: " +
+          //               catagory[1] +
+          //             " food id: " +
+          //             id);
 
 
           getNutritionalData(id);
