@@ -45,26 +45,53 @@ $(document).ready(function(){
         return measurements;
       }
 
-      //takes data and returns array of objects of nutrient
-      //values and nutrient name
-      //for measurement type.
-      //value is nutrient value for 1 of the nutrient type
-      function getNutrients(dataIn, measureIn){
+      //takes data, amount as an int-(i.e. 2.5), and measure type to match
+      //string of available measurement types from api
+      //returns nutrient name, value for calculated amount of meassurement
+      //and the unit that the resulting amount of nutrient is in.
+      function calculateNutrients(dataIn, amountIn, measureIn){
         var results = [];
         var unit = "";
         var nutriVal = "";
         var nutriName = "";
 
         nutrientsLength = data.report.food.nutrients.length;
+        measureLength = data.report.food.nutrients[i].measures.length;
+
+        if (!Math.round10) {
+          Math.round10 = function(value, exp) {
+            return decimalAdjust('round', value, exp);
+          };
+        }
+        
+        function decimalAdjust(type, value, exp) {
+          // If the exp is undefined or zero...
+          if (typeof exp === 'undefined' || +exp === 0) {
+            return Math[type](value);
+          }
+          value = +value;
+          exp = +exp;
+          // If the value is not a number or the exp is not an integer...
+          if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+            return NaN;
+          }
+          // Shift
+          value = value.toString().split('e');
+          value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+          // Shift back
+          value = value.toString().split('e');
+          return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+        }
+
 
         for ( i = 0; i < nutrientsLength; i++){
 
             unit = data.report.food.nutrients[i].unit;
             nutriName =  data.report.food.nutrients[i].name;
 
-            for ( ii = 0; ii < data.report.food.nutrients[i].measures.length; ii++ ){
+            for ( ii = 0; ii < measureLength; ii++ ){
               if (data.report.food.nutrients[i].measures[ii].label === measureIn){
-                  nutriVal =  data.report.food.nutrients[i].measures[ii].value
+                  nutriVal = Math.round10(amountIn * (data.report.food.nutrients[i].measures[ii].value), -2);
               }
             }
           results[i] = {
@@ -86,7 +113,7 @@ $(document).ready(function(){
       // console.log(data.report.food.nutrients[1]);
 
       //test nutrient function
-      console.log(getNutrients(data, "cup, diced"));
+      console.log(calculateNutrients(data, 1.5, "cup, diced"));
     });
     //get catagory when user selects it
     $('#selectCatagory').on('change', function(){
