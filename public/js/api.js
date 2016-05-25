@@ -32,6 +32,7 @@ $(document).ready(function(){
     // same query gets nutrition data "basic" report returns
     // most asked for nutrients and ones included on nutritional facts
     // pannel on the back of packages
+    //todo----------need to make this respond to ndbno number
     $.get('http://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
 
       //takes data and returns array of Measurement types
@@ -63,7 +64,7 @@ $(document).ready(function(){
             return decimalAdjust('round', value, exp);
           };
         }
-        
+
         function decimalAdjust(type, value, exp) {
           // If the exp is undefined or zero...
           if (typeof exp === 'undefined' || +exp === 0) {
@@ -104,18 +105,12 @@ $(document).ready(function(){
       }
 
       //test measure function
-      //console.log(getMeasurements(data));
-
-      //turn into nutient function
-      // for ( i = 0; i < data.report.food.nutrients.length; i++) {
-      //   console.log("nutrient: " + data.report.food.nutrients[i].name);
-      // }
-      // console.log(data.report.food.nutrients[1]);
+      console.log(getMeasurements(data));
 
       //test nutrient function
       console.log(calculateNutrients(data, 1.5, "cup, diced"));
     });
-    //get catagory when user selects it
+    //get catagory listener when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
       for ( i = 0; i < data.list.item.length; i++ ) {
@@ -125,7 +120,7 @@ $(document).ready(function(){
         }
       }
 
-      //get info for a particular food
+      //get list of foods a particular catagory
       $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
         var foods = [];
         var nutrition = {};
@@ -167,6 +162,8 @@ $(document).ready(function(){
           });
         }
 
+        //create food amount user input on typeahead select or change.
+
         //get food item id from fooditem name in input
         $('#submit').on('click', function(event){
           event.preventDefault();
@@ -181,6 +178,9 @@ $(document).ready(function(){
           //             " food id: " +
           //             id);
 
+          //getFoodData(), returns foodData
+          //get nutrientData(), returns nutrient data
+          //displayNutrientData(), creates divs to diplay nutrient data
 
           getNutritionalData(id);
           //open new window for results
@@ -235,8 +235,6 @@ $(document).ready(function(){
     });
 
 
-  }).then(function(nutrition){
-
-    });
+  });//then after slecting foodgroup
 
 });
