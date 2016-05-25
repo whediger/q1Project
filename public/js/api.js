@@ -118,7 +118,7 @@ $(document).ready(function(){
           }
           return results;
         }
-
+        
         //todo----------need to have user input call following 2 functions
         //test measure function
         console.log(getMeasurements(data));
