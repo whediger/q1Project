@@ -108,7 +108,8 @@ $(document).ready(function(){
 
       //test nutrient function
       console.log(calculateNutrients(data, 1.5, "cup, diced"));
-    });
+    });//test get nutrient data function
+
     //get catagory listener when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
@@ -229,7 +230,8 @@ $(document).ready(function(){
             limit: 30,
             source: substringMatcher(foods)
           });
-      });
-    });
-  });
+
+      });//get list of foods
+    });//select catagory on change
+  });//get data
 });
