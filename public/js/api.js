@@ -10,8 +10,7 @@ $(document).ready(function(){
           + '">' + data.list.item[i].name
           + '</option>')
     }
-    return data;
-  }).then(function(data){
+
     //get selected catagory and catagory id
 
     var catagory = ["", ""];
@@ -230,11 +229,7 @@ $(document).ready(function(){
             limit: 30,
             source: substringMatcher(foods)
           });
-        //console.log(data.list.item[200]);
       });
     });
-
-
-  });//then after slecting foodgroup
-
+  });
 });
