@@ -54,14 +54,16 @@ $(document).ready(function(){
           var unit = "";
           var nutriVal = "";
           var nutriName = "";
+          var measurePath = "";
 
           nutrientsLength = data.report.food.nutrients.length;
 
+          //if food has measurement properties
           if (data.report.food.nutrients[0].measures.length > 0){
             console.log("hasOwnProperty: true");
             measureLength = data.report.food.nutrients[0].measures.length;
           } else {
-
+            measureLength = 0;
             console.log("measures = zero");
           }
 
@@ -97,10 +99,16 @@ $(document).ready(function(){
               unit = data.report.food.nutrients[i].unit;
               nutriName =  data.report.food.nutrients[i].name;
 
-              for ( ii = 0; ii < measureLength; ii++ ){
-                if (data.report.food.nutrients[i].measures[ii].label === measureIn){
-                    nutriVal = Math.round10(amountIn * (data.report.food.nutrients[i].measures[ii].value), -2);
+              if (measureLength > 0 ) {
+                for ( ii = 0; ii < measureLength; ii++ ){
+                  if (data.report.food.nutrients[i].measures[ii].label === measureIn){
+                      nutriVal = Math.round10(amountIn * (data.report.food.nutrients[i].measures[ii].value), -2);
+                  }
                 }
+              } else {
+                //if food has no measures return value for 100g of food
+                    nutriVal = Math.round10(amountIn * (data.report.food.nutrients[i].value), -2);
+
               }
             results[i] = {
               name: nutriName,
@@ -114,8 +122,8 @@ $(document).ready(function(){
         //test measure function
         console.log(getMeasurements(data));
 
-        //test nutrient function
-        console.log(calculateNutrients(data, 1.5, ".22 Lbs"));
+        //test nutrient function, using first result key word cheese in dairy
+        console.log(calculateNutrients(data, 1.5, "cup"));
       });//get nutrient data function
     }//function getnutridata
 
