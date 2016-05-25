@@ -32,12 +32,13 @@ $(document).ready(function(){
     //todo----------need to make this respond to ndbno number
     function getNutriData(ndbnoIn){
       $.get('http://api.nal.usda.gov/ndb/reports/?ndbno=' + ndbnoIn + '&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
-
+        console.log(data);
         //takes data and returns array of Measurement types
         function getMeasurements(dataIn){
           var measurements = [];
           //note: add conditional
           var measureLength = dataIn.report.food.nutrients[1].measures.length;
+          if ( measureLength === 0 ){ return measurements[0] = ".22 Lbs" };
           for ( i = 0; i < measureLength; i++){
             measurements[i] = dataIn.report.food.nutrients[1].measures[i].label;
           }
@@ -55,7 +56,15 @@ $(document).ready(function(){
           var nutriName = "";
 
           nutrientsLength = data.report.food.nutrients.length;
-          measureLength = data.report.food.nutrients[i].measures.length;
+
+          if (data.report.food.nutrients[0].measures.length > 0){
+            console.log("hasOwnProperty: true");
+            measureLength = data.report.food.nutrients[0].measures.length;
+          } else {
+
+            console.log("measures = zero");
+          }
+
 
           if (!Math.round10) {
             Math.round10 = function(value, exp) {
@@ -106,7 +115,7 @@ $(document).ready(function(){
         console.log(getMeasurements(data));
 
         //test nutrient function
-        console.log(calculateNutrients(data, 1.5, "cup, diced"));
+        console.log(calculateNutrients(data, 1.5, ".22 Lbs"));
       });//get nutrient data function
     }//function getnutridata
 
@@ -166,8 +175,8 @@ $(document).ready(function(){
         //create food amount user input on typeahead select or change.
 
         //get food item id from fooditem name in input
-        $('#submit').on('click', function(event){
-          event.preventDefault();
+        $('.typeahead').on('typeahead:select', function(event){
+          //event.preventDefault();
           var id = "";
 
           nameIn = $('#foodText').val();
