@@ -55,12 +55,12 @@
             </div>
             <div class="name-row">
               <div id="scrollable-dropdown-menu">
-                <input id="foodText" class="typeahead" type="text" placeholder="Search for Food">
+                <input id="foodText" class="typeahead" type="text" placeholder="Search for Food" onclick="this.select()">
               </div>
 
               <div id="measurements">
                 <label for="units">Enter Amount: </label>
-                <input type="number" id="units" value="1">
+                <input type="number" id="units" value="0" onclick="this.select()">
                 <select id="selectCatagory" name="foodSearch">
                   <option value="none" disabled> Measurement Type</option>
                 </select>

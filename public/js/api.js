@@ -118,7 +118,26 @@ $(document).ready(function(){
           }
           return results;
         }
-        
+        //-------------------==========> Measurement input row
+
+      $('#units').keyup(function(event){
+          console.log(event);
+          if (checkInp('#units') === false) {
+            $('#units').val('');
+          }
+         });
+
+        function checkInp(idIn)
+            {
+                var x = $(idIn).val();
+                var regex=/[(\.{1})0-9]/g;
+                if (!x.match(regex))
+                {
+                    alert("Must input numbers");
+                    return false;
+                }
+            }
+
         //todo----------need to have user input call following 2 functions
         //test measure function
         console.log(getMeasurements(data));
