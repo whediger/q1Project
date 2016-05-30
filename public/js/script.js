@@ -45,6 +45,15 @@ $(document).ready(function(){
           return measurements;
         }
 
+        function createMeasurementList(measurements){
+          for (  i = 0; i < measurements.length; i++){
+            $('#measureSelect').append('<option'
+              + ' value="' + measurements[i]
+              + '">' + measurements[i]
+              + '</option>')
+          }
+        }
+
         //takes data, amount as an int-(i.e. 2.5), and measure type to match
         //string of available measurement types from api
         //returns nutrient name, value for calculated amount of meassurement
@@ -144,8 +153,9 @@ $(document).ready(function(){
         //todo----------need to have user input call following 2 functions
         //test measure function
         console.log(getMeasurements(data));
-
-        //test nutrient function, using first result key word cheese in dairy
+        measurements = getMeasurements(data);
+        createMeasurementList(measurements);
+        //note: test nutrient function, using first result key word cheese in dairy
         console.log(calculateNutrients(data, 1.5, "cup"));
       });//get nutrient data function
     }//function getnutridata
