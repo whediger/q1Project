@@ -45,6 +45,7 @@ $(document).ready(function(){
           return measurements;
         }
 
+        // adds available measurements to dropdown on UI
         function createMeasurementList(measurements){
           for (  i = 0; i < measurements.length; i++){
             $('#measureSelect').append('<option'
@@ -58,7 +59,7 @@ $(document).ready(function(){
         //string of available measurement types from api
         //returns nutrient name, value for calculated amount of meassurement
         //and the unit that the resulting amount of nutrient is in.
-        function calculateNutrients(dataIn, amountIn, measureIn){
+        function calculateNutrients(amountIn, measureIn){
           var results = [];
           var unit = "";
           var nutriVal = "";
@@ -122,6 +123,7 @@ $(document).ready(function(){
             results[i] = {
               name: nutriName,
               value: nutriVal,
+              amount: amountIn,
               unit: unit
             }
           }
@@ -130,7 +132,7 @@ $(document).ready(function(){
         //-------------------==========> Measurement input row
 
       $('#units').keyup(function(event){
-          console.log(event);
+          //console.log(event);
           if (checkInp('#units') === false) {
             $('#units').val('');
           }
@@ -152,15 +154,14 @@ $(document).ready(function(){
 
         //todo----------need to have user input call following 2 functions
         //test measure function
-        console.log(getMeasurements(data));
-        measurements = getMeasurements(data);
-        createMeasurementList(measurements);
+        console.log("get measurements: " + getMeasurements(data));
+        createMeasurementList(getMeasurements(data));
         //note: test nutrient function, using first result key word cheese in dairy
-        console.log(calculateNutrients(data, 1.5, "cup"));
+        console.log("calculate nutrients: " + calculateNutrients(1.5, "cup"));
       });//get nutrient data function
     }//function getnutridata
 
-    //get catagory listener when user selects it
+    //catagory listener assigns when user selects it
     $('#selectCatagory').on('change', function(){
       catagory[0] = $('#selectCatagory').val();
       for ( i = 0; i < data.list.item.length; i++ ) {
@@ -201,11 +202,12 @@ $(document).ready(function(){
             nutroLength = data.report.food.nutrients.length;
             //console.log(data);
               //add elements to modal-body
+              //todo - refactor to pull this out and use new data
               for ( i = 1; i < nutroLength; i ++ ) {
                 if (data.report.food.nutrients[i].value > 0 ) {
                   $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
                   + data.report.food.nutrients[i].name
-                  + '</div><div class="nutriValue">'+ data.report.food.nutrients[i].value +' '
+                  + '</div><div class="nutriValue">'+ data.report.food.nutrients[if].value +' '
                   +data.report.food.nutrients[i].unit + '</div></div>' );
                 }
               }
