@@ -127,6 +127,9 @@ $(document).ready(function(){
           }
          });
 
+         //checks for valid numeric input
+         //todo----------will not recognize
+         //seperatd decimal points (1.2.)
         function checkInp(idIn)
             {
                 var x = $(idIn).val();
