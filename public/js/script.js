@@ -157,7 +157,7 @@ $(document).ready(function(){
         console.log("get measurements: " + getMeasurements(data));
         createMeasurementList(getMeasurements(data));
         //note: test nutrient function, using first result key word cheese in dairy
-        console.log("calculate nutrients: " + calculateNutrients(1.5, "cup"));
+        console.log(calculateNutrients(1.5, "cup"));
       });//get nutrient data function
     }//function getnutridata
 
@@ -182,8 +182,6 @@ $(document).ready(function(){
         }
         // console.log(data);
 
-
-
         function getNdbno(foodName) {
           var ndbnoOut = "";
           for ( i = 0; i < foodlength; i++) {
@@ -194,26 +192,26 @@ $(document).ready(function(){
           return ndbnoOut;
         }
 
-        //-------===========> this function is depricated
-        //takes ndbno returns nutrional data
-        function getNutritionalData(ndbnoIn){
-          $.get('http://api.nal.usda.gov/ndb/reports/?ndbno='+ ndbnoIn +'&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
-            nutrition = data;
-            nutroLength = data.report.food.nutrients.length;
-            //console.log(data);
-              //add elements to modal-body
-              //todo - refactor to pull this out and use new data
-              for ( i = 1; i < nutroLength; i ++ ) {
-                if (data.report.food.nutrients[i].value > 0 ) {
-                  $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
-                  + data.report.food.nutrients[i].name
-                  + '</div><div class="nutriValue">'+ data.report.food.nutrients[if].value +' '
-                  +data.report.food.nutrients[i].unit + '</div></div>' );
-                }
-              }
-              // console.log(data.report.food.nutrients[i].name);
-          });
+        //todo---------- takes 2D array, 1) array of ingredient arrays
+        // 2) array of objects containing ingredient deatails.
+        //builds modal for displaying recipe data.
+        function createNutraModal(nutriListIn) {
+          //add elements to modal-body
+          //todo - refactor to pull this out and use new data
+
+          // todo----refactor following paths
+          nutroLength = data.report.food.nutrients.length;
+          for ( i = 1; i < nutroLength; i ++ ) {
+            if ( data.report.food.nutrients[i].value > 0 ) {
+              $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
+              + data.report.food.nutrients[i].name
+              + '</div><div class="nutriValue">'+ data.report.food.nutrients[i].value +' '
+              +data.report.food.nutrients[i].unit + '</div></div>' );
+            }
+          }
+
         }
+        
 
         //create food amount user input on typeahead select or change.
 
@@ -225,11 +223,6 @@ $(document).ready(function(){
           nameIn = $('#foodText').val();
 
           id = getNdbno(nameIn);
-
-          // console.log("catagory: " +
-          //               catagory[1] +
-          //             " food id: " +
-          //             id);
 
           //getFoodData(), returns foodData
           //get nutrientData(), returns nutrient data
