@@ -38,7 +38,7 @@ $(document).ready(function(){
           var measurements = [];
           //note: add conditional
           var measureLength = dataIn.report.food.nutrients[1].measures.length;
-          if ( measureLength === 0 ){ return measurements[0] = ".22 Lbs" };
+          if ( measureLength === 0 ){ return measurements[0] = ".22 Lb" };
           for ( i = 0; i < measureLength; i++){
             measurements[i] = dataIn.report.food.nutrients[1].measures[i].label;
           }
@@ -68,28 +68,31 @@ $(document).ready(function(){
         //returns nutrient name, value for calculated amount of meassurement
         //and the unit that the resulting amount of nutrient is in.
         function createNutraModal(nutriListIn) {
-          //add elements to modal-body
-          // object in
+          //todo -- this adds elements each time if modal is hidden and then
+          //     -- the show nutrients button is pushed again.
+          // object in--
           //   name: nutriName,
-          //   value: nutriVal,
+          //   value: nutriVal, //precalculated for portion
           //   amount: amountIn,
           //   unit: unit
 
           console.log("were in! create Nutra Modal");
-
           //note: test nutrient function, using first result key word cheese in dairy
 
-
           // todo----refactor following paths
-          nutroLength = data.report.food.nutrients.length;
-          // for ( i = 1; i < nutroLength; i ++ ) {
-          //   if ( data.report.food.nutrients[i].value > 0 ) {
-          //     $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
-          //     + data.report.food.nutrients[i].name
-          //     + '</div><div class="nutriValue">'+ data.report.food.nutrients[i].value +' '
-          //     +data.report.food.nutrients[i].unit + '</div></div>' );
-          //   }
-          // }
+          nutroLength = nutriListIn.length;
+          $('.modal-body').append('<h3>('+ $('#units').val()
+          + ')  ' + $('#measureSelect').val() + ' Serving</h3>');
+
+          for ( i = 1; i < nutroLength; i ++ ) {
+            if ( data.report.food.nutrients[i].value > 0 ) {
+              $('.modal-body').append('<div class="nutriRow"><div class="nutrientTitle">'
+              + nutriListIn[i].name
+              + '</div><div class="nutriValue">'
+              + nutriListIn[i].value +' '
+              + nutriListIn[i].unit + '</div></div>' );
+            }
+          }
 
         }
 
