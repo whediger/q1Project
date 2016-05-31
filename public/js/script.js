@@ -40,25 +40,34 @@ $(document).ready(function(){
           var measureLength = dataIn.report.food.nutrients[1].measures.length;
           if ( measureLength === 0 ){ return measurements[0] = ".22 Lb" };
           for ( i = 0; i < measureLength; i++){
-            measurements[i] = dataIn.report.food.nutrients[1].measures[i].label;
+            measurements[i] = {
+              qty: dataIn.report.food.nutrients[1].measures[i].qty,
+              label: dataIn.report.food.nutrients[1].measures[i].label
+            }
           }
           return measurements;
         }
 
         // adds available measurements to dropdown on UI
         function createMeasurementList(measurements){
+          console.log("measurements: ");
+          console.log(measurements);
+          //measurements object
+          // label: name of measurements
+          // val: value of label, i.e. (12) for 12 of the label amount.
           //if statement to check for string
           if (Array.isArray(measurements)) {
             for (  i = 0; i < measurements.length; i++){
               $('#measureSelect').append('<option'
-                + ' value="' + measurements[i]
-                + '">' + measurements[i]
+                + ' data-label="' + measurements[i].label
+                + '" data-qty="' + measurements[i].qty + '">'
+                + " " + measurements[i].qty + " " + measurements[i].label
                 + '</option>')
             }
           } else {
             $('#measureSelect').append('<option'
-              + ' value="' + measurements
-              + '">' + measurements
+              + ' value="' + measurements.label
+              + '">' + measurements.label
               + '</option>')
           }
         }
@@ -76,7 +85,6 @@ $(document).ready(function(){
           //   amount: amountIn,
           //   unit: unit
 
-          console.log("were in! create Nutra Modal");
           //note: test nutrient function, using first result key word cheese in dairy
 
           // todo----refactor following paths
@@ -149,6 +157,7 @@ $(document).ready(function(){
 
               if (measureLength > 0 ) {
                 for ( ii = 0; ii < measureLength; ii++ ){
+                  //here
                   if (data.report.food.nutrients[i].measures[ii].label === measureIn){
                       nutriVal = Math.round10(amountIn * (data.report.food.nutrients[i].measures[ii].value), -2);
                   }
@@ -191,11 +200,15 @@ $(document).ready(function(){
                 }
             }
 
-        //todo----------need to have user input call following 2 functions
+        //todo----------the measureSelect value is not the value of the
+        //  possible qty of measurement. see >beverages>a>bud light.
+        //  there are two possible "oz" one 1oz, and one 12oz.
         //test measure function
         console.log("get measurements: " + getMeasurements(data));
         createMeasurementList(getMeasurements(data));
         $('#submit').on('click', function(){
+          console.log('data from element!');
+          console.log($('#measureSelect option:selected').attr('data-qty'));
           //console.log($('#units').val(), $('#measureSelect').val());
           calculateNutrients($('#units').val(), $('#measureSelect').val());
         });
