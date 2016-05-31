@@ -219,7 +219,9 @@ $(document).ready(function(){
           console.log($('#measureSelect option:selected').attr('data-label'));
           var label = $('#measureSelect option:selected').attr('data-label');
           //console.log($('#units').val(), $('#measureSelect').val());
-          calculateNutrients(qty, $('#units').val(), label);
+          var unitsOut = $('#units').val();
+
+          calculateNutrients(qty, unitsOut, label);
         });
       });//get nutrient data function
     }//function getnutridata
