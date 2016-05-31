@@ -31,7 +31,7 @@ $(document).ready(function(){
     // pannel on the back of packages
     //todo----------need to make this respond to ndbno number
     function getNutriData(ndbnoIn){
-      $.get('http://api.nal.usda.gov/ndb/reports/?ndbno=' + ndbnoIn + '&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
+      $.get('https://api.nal.usda.gov/ndb/reports/?ndbno=' + ndbnoIn + '&type=b&format=json&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
         console.log(data);
         //takes data and returns array of Measurement types
         function getMeasurements(dataIn){
@@ -235,7 +235,7 @@ $(document).ready(function(){
       }
 
       //get list of foods for a particular catagory
-      $.get('http://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
+      $.get('https://api.nal.usda.gov/ndb/search/?format=json&fg='+ catagory[1] + '&sort=n&max=1500&offset=0&api_key=rz0uHRvuUkaP6TxlqLvFaVKYKlbUgcjYMOOZE51u', function(data){
         var foods = [];
         var nutrition = {};
 
