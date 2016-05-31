@@ -40,10 +40,13 @@ $(document).ready(function(){
           var measureLength = dataIn.report.food.nutrients[1].measures.length;
           if ( measureLength === 0 ){ return measurements[0] = ".22 Lb" };
           for ( i = 0; i < measureLength; i++){
-            measurements[i] = {
-              qty: dataIn.report.food.nutrients[1].measures[i].qty,
-              label: dataIn.report.food.nutrients[1].measures[i].label
+            if ( dataIn.report.food.nutrients[1].measures[i] !== null){
+              measurements[i] = {
+                qty: dataIn.report.food.nutrients[1].measures[i].qty,
+                label: dataIn.report.food.nutrients[1].measures[i].label
+              }
             }
+
           }
           return measurements;
         }
@@ -90,7 +93,7 @@ $(document).ready(function(){
           // todo----refactor following paths
           nutroLength = nutriListIn.length;
           $('.modal-body').append('<h3>('+ $('#units').val()
-          + ')  ' + $('#measureSelect').val() + ' Serving</h3>');
+          + ')  ' + $('#measureSelect').val() + ', Serving</h3>');
 
           for ( i = 1; i < nutroLength; i ++ ) {
             if ( data.report.food.nutrients[i].value > 0 ) {
@@ -104,14 +107,16 @@ $(document).ready(function(){
 
         }
 
-        function calculateNutrients(amountIn, measureIn){
-          console.log("inside calculateNutrients " + amountIn + " " + measureIn);
+        function calculateNutrients(qtyIn, amountIn, labelIn){
+          console.log("inside calculateNutrients " + amountIn + " " + labelIn);
           console.log(data);
           var results = [];
           var unit = "";
           var nutriVal = "";
           var nutriName = "";
           var measurePath = "";
+
+          if (qtyIn > 0) { amountIn *= qtyIn; }
 
           nutrientsLength = data.report.food.nutrients.length;
 
@@ -158,8 +163,9 @@ $(document).ready(function(){
               if (measureLength > 0 ) {
                 for ( ii = 0; ii < measureLength; ii++ ){
                   //here
-                  if (data.report.food.nutrients[i].measures[ii].label === measureIn){
+                  if (data.report.food.nutrients[i].measures[ii].label === labelIn){
                       nutriVal = Math.round10(amountIn * (data.report.food.nutrients[i].measures[ii].value), -2);
+                      break;
                   }
                 }
               } else {
@@ -207,10 +213,13 @@ $(document).ready(function(){
         console.log("get measurements: " + getMeasurements(data));
         createMeasurementList(getMeasurements(data));
         $('#submit').on('click', function(){
-          console.log('data from element!');
+          // console.log('data from element!');
           console.log($('#measureSelect option:selected').attr('data-qty'));
+          var qty = $('#measureSelect option:selected').attr('data-qty');
+          console.log($('#measureSelect option:selected').attr('data-label'));
+          var label = $('#measureSelect option:selected').attr('data-label');
           //console.log($('#units').val(), $('#measureSelect').val());
-          calculateNutrients($('#units').val(), $('#measureSelect').val());
+          calculateNutrients(qty, $('#units').val(), label);
         });
       });//get nutrient data function
     }//function getnutridata
