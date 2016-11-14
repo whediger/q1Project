@@ -19,7 +19,7 @@ The challenge of this project was to access the most relevant information from a
 	▪	JQuery
 
 ## TODO:
-	* fix buggy user input inteerface
+	* fix buggy user input interface
 	* reset data when user changes it
 	* create recipe input option
 	* create auth to store recipes
